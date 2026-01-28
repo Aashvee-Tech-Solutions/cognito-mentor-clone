@@ -1,6 +1,8 @@
-import { Target, Lightbulb, Users, Rocket, Eye, Flag, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Target, Lightbulb, Users, Rocket, Eye, Flag, CheckCircle, Mail, Phone } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { LeadershipPopup, leadershipData } from "@/components/LeadershipPopup";
 import logo from "@/assets/logo.png";
 
 const values = [
@@ -35,6 +37,14 @@ const missionPoints = [
 ];
 
 export default function About() {
+  const [selectedLeader, setSelectedLeader] = useState<typeof leadershipData[0] | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleReadMore = (leader: typeof leadershipData[0]) => {
+    setSelectedLeader(leader);
+    setIsPopupOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -158,6 +168,76 @@ export default function About() {
         </div>
       </section>
 
+      {/* Leadership Team */}
+      <section className="py-20 bg-secondary/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider mb-4 block animate-fade-in">
+              Meet Our Leaders
+            </span>
+            <h2 className="section-title animate-slide-up">
+              Leadership Team
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+              Our experienced leadership team drives innovation and excellence across all aspects of the organization.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {leadershipData.map((leader, index) => (
+              <div 
+                key={leader.name}
+                className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 animate-slide-up group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Avatar Placeholder */}
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform border-2 border-primary/30">
+                  <span className="text-2xl font-bold text-primary">
+                    {leader.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                  </span>
+                </div>
+
+                <div className="text-center mb-4">
+                  <h3 className="font-bold text-lg mb-1">{leader.name}</h3>
+                  <p className="text-primary text-sm font-medium">{leader.designation}</p>
+                </div>
+
+                {/* Contact Info */}
+                <div className="space-y-2 mb-4">
+                  <a 
+                    href={`tel:${leader.phone}`}
+                    className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone className="w-4 h-4" />
+                    {leader.phone}
+                  </a>
+                  <a 
+                    href={`mailto:${leader.email}`}
+                    className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors truncate"
+                  >
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span className="truncate">{leader.email}</span>
+                  </a>
+                </div>
+
+                {/* Short Bio */}
+                <p className="text-muted-foreground text-sm text-center line-clamp-3 mb-4">
+                  {leader.shortBio}
+                </p>
+
+                {/* Read More Button */}
+                <button
+                  onClick={() => handleReadMore(leader)}
+                  className="w-full btn-shiny bg-primary/10 text-primary py-2 px-4 rounded-lg text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                >
+                  Read More
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Commitment */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-blue-500/5">
         <div className="container mx-auto px-4">
@@ -172,6 +252,13 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Leadership Popup */}
+      <LeadershipPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        leader={selectedLeader}
+      />
 
       <Footer />
     </div>
