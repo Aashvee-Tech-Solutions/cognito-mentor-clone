@@ -75,11 +75,11 @@ export const Footer = () => {
                 <span>Rajahmundry, Andhra Pradesh, India</span>
               </a>
               <a 
-                href="tel:+918978270888" 
+                href="tel:+918978246111" 
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
               >
                 <Phone className="w-5 h-5 flex-shrink-0 group-hover:animate-pulse" />
-                <span>(+91) 89782 70888</span>
+                <span>(+91) 8978246111, (+91) 8978247111</span>
               </a>
               <a 
                 href="mailto:contact@cognitoinsights.ai" 
