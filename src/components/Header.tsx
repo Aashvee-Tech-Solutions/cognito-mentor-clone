@@ -22,13 +22,12 @@ const navItems = [
   },
   { 
     label: "Industries", 
-    href: LEARNING_URL,
-    external: true,
-    dropdown: ["Education", "IT & Software", "Government", "Corporate"]
+    href: "/industries",
+    external: false,
   },
-  { label: "Case Studies", href: LEARNING_URL, external: true },
+  { label: "Case Studies", href: "/case-studies", external: false },
   { label: "About", href: "/about", external: false },
-  { label: "Blog", href: LEARNING_URL, external: true },
+  { label: "Blog", href: "https://learning.cognitoinsights.ai/blog/", external: true },
 ];
 
 type PopupType = "webinar" | "enterprise" | "partners" | null;
@@ -101,7 +100,9 @@ export const Header = () => {
                 </button>
               </div>
               <div className="flex items-center gap-4 text-muted-foreground ml-auto">
-                <a href="tel:+918978270888" className="hover:text-primary transition-colors">(+91) 89782 70888</a>
+                <a href="tel:+918978246111" className="hover:text-primary transition-colors">(+91) 8978246111</a>
+                <span className="text-border">|</span>
+                <a href="tel:+918978247111" className="hover:text-primary transition-colors">(+91) 8978247111</a>
                 <a href="mailto:contact@cognitoinsights.ai" className="hover:text-primary transition-colors">contact@cognitoinsights.ai</a>
               </div>
             </div>

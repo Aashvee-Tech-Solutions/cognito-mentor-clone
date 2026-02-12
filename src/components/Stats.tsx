@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 const stats = [
   { value: 500, suffix: "+", label: "AI Models Deployed" },
@@ -53,30 +54,32 @@ export const Stats = () => {
   return (
     <section className="py-20 bg-secondary/30 border-y border-border/50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Behind Every Successful AI Implementation
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            CognitoInsights – A Trusted Partner for Enterprise AI Solutions and Digital Transformation
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Behind Every Successful AI Implementation
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              CognitoInsights – A Trusted Partner for Enterprise AI Solutions and Digital Transformation
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => {
             const { count, ref } = useCountUp(stat.value, 2000);
             return (
-              <div
-                key={stat.label}
-                ref={ref}
-                className="stat-card"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2">
-                  {count}{stat.suffix}
+              <ScrollReveal key={stat.label} delay={index * 100}>
+                <div
+                  ref={ref}
+                  className="stat-card"
+                >
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2">
+                    {count}{stat.suffix}
+                  </div>
+                  <p className="text-muted-foreground text-sm md:text-base">{stat.label}</p>
                 </div>
-                <p className="text-muted-foreground text-sm md:text-base">{stat.label}</p>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
