@@ -126,7 +126,7 @@ export const Header = () => {
               {navItems.map((item) => (
                 <div
                   key={item.label}
-                  className="relative"
+                  className="relative group"
                   onMouseEnter={() => setActiveDropdown(item.dropdown ? item.label : null)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -140,18 +140,21 @@ export const Header = () => {
                   </a>
                   
                   {item.dropdown && activeDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-xl shadow-2xl overflow-hidden animate-fade-in">
-                      {item.dropdown.map((subItem) => (
-                        <a
-                          key={subItem}
-                          href={LEARNING_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
-                        >
-                          {subItem}
-                        </a>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2">
+                      <div className="w-56 bg-card border border-border rounded-xl shadow-2xl overflow-hidden animate-fade-in z-50">
+                        {item.dropdown.map((subItem) => (
+                          <a
+                            key={subItem}
+                            href={LEARNING_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {subItem}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
