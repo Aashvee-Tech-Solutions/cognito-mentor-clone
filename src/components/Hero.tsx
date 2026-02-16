@@ -15,7 +15,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen hero-gradient overflow-hidden pt-32 pb-20">
+    <section className="relative min-h-screen hero-gradient overflow-x-hidden overflow-y-visible pt-32 pb-20">
       {/* Background effects */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
